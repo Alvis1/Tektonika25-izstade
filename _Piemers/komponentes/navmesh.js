@@ -4,8 +4,94 @@
  * Navigation Mesh Component
  * 
  * Constrains entity movement to follow the surface of specified geometry (navmesh).
+ * Prevents players from walking through walls and keeps them grounded on terrain.
  * 
- * Example: <a-entity wasd-controls navmesh="navmesh: #ground-mesh; height: 1.8"></a-entity>
+ * ============================================================================
+ * USAGE EXAMPLES:
+ * ============================================================================
+ * 
+ * Example 1: Basic usage with WASD controls
+ * ------------------------------------------
+ * <a-entity wasd-controls navmesh="navmesh: #ground-mesh"></a-entity>
+ * 
+ * 
+ * Example 2: Custom player height (e.g., for VR camera)
+ * ------------------------------------------------------
+ * <a-entity camera look-controls wasd-controls 
+ *           navmesh="navmesh: #terrain; height: 1.8">
+ * </a-entity>
+ * 
+ * 
+ * Example 3: Multiple navmesh surfaces (using classes)
+ * -------------------------------------
+ * <a-entity wasd-controls 
+ *           navmesh="navmesh: .ground, .platform, .stairs">
+ * </a-entity>
+ * 
+ * 
+ * Example 4: With obstacle exclusion (avoid walking through specific objects)
+ * ----------------------------------------------------------------------------
+ * <a-entity wasd-controls 
+ *           navmesh="navmesh: #floor; 
+ *                    exclude: .wall, .furniture, .obstacle">
+ * </a-entity>
+ * 
+ * 
+ * Example 5: Custom fall distance and height
+ * -------------------------------------------
+ * <a-entity wasd-controls 
+ *           navmesh="navmesh: #ground; 
+ *                    fall: 2.0; 
+ *                    height: 1.6">
+ * </a-entity>
+ * <!-- fall: 2.0 means player can fall up to 2 meters before stopping -->
+ * 
+ * 
+ * Example 6: Disable/enable dynamically via JavaScript
+ * -----------------------------------------------------
+ * <a-entity id="player" wasd-controls navmesh="navmesh: #floor"></a-entity>
+ * 
+ * <script>
+ *   // Disable navmesh constraint
+ *   document.querySelector('#player').setAttribute('navmesh', 'enabled', false);
+ *   
+ *   // Re-enable navmesh constraint
+ *   document.querySelector('#player').setAttribute('navmesh', 'enabled', true);
+ * </script>
+ * 
+ * 
+ * Example 7: Using with a custom origin point (for complex rigs)
+ * ---------------------------------------------------------------
+ * <a-entity id="player-rig">
+ *   <a-entity id="camera-holder" camera look-controls 
+ *             navmesh="navmesh: #terrain; 
+ *                      xzOrigin: #player-rig">
+ *   </a-entity>
+ * </a-entity>
+ * 
+ * 
+ * Example 8: Complete scene setup
+ * --------------------------------
+ * <a-scene>
+ *   <!-- Ground mesh that serves as navmesh -->
+ *   <a-plane id="ground-mesh" rotation="-90 0 0" width="50" height="50" 
+ *            color="#7BC8A4" class="ground"></a-plane>
+ *   
+ *   <!-- Obstacles to avoid -->
+ *   <a-box class="obstacle" position="0 0.5 -3" color="#FF5733"></a-box>
+ *   <a-cylinder class="obstacle" position="2 0.5 -4" radius="0.5"></a-cylinder>
+ *   
+ *   <!-- Player with navmesh -->
+ *   <a-entity camera look-controls wasd-controls 
+ *             position="0 1.6 0"
+ *             navmesh="navmesh: .ground; 
+ *                      exclude: .obstacle; 
+ *                      height: 1.6; 
+ *                      fall: 1.0">
+ *   </a-entity>
+ * </a-scene>
+ * 
+ * ============================================================================
  */
 AFRAME.registerComponent('navmesh', {
   schema: {

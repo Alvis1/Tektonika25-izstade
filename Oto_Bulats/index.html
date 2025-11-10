@@ -8,6 +8,8 @@
      <!-- Assets section: preload models and images -->
       <a-assets>
         <a-asset-item id="Lode" src="objects/Pus_Lode.glb"></a-asset-item>
+        <a-asset-item id="lode_ieksa" src="objects/lode_ieksa.obj"></a-asset-item>
+   
       </a-assets>
 
       <!-------------------->
@@ -44,6 +46,10 @@
                height="100">
       </a-plane>
 
+      <!------------>
+      <!-- Lode 1 -->
+      <!------------>
+
       <!-- Display the GLB model -->
       <a-entity 
         gltf-model="#Lode" 
@@ -51,7 +57,16 @@
         rotation="0 -24.085999791709547 0" 
         scale="10 10 10">
       </a-entity>
-      
+
+      <!-- OBJ model at same position -->
+       <a-entity
+         obj-model="obj: #lode_ieksa"
+         position="1.22259 0 -5.70292" 
+         rotation="0 -24.085999791709547 0" 
+         scale="10 10 10"
+         material="src: img/Lode_0.webp; metalness: 0.2; roughness: 0.8; offset: 0 0; repeat: 2 2"
+         animation="property: material.offset; from: 0.515 2; to: 0.515 1; dur: 2000; loop: true">
+      </a-entity>
     </a-scene>
   </body>
 </html>
