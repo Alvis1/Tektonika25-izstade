@@ -5,22 +5,68 @@
   <body>
     <a-scene>
 
+     <!-- Assets section: preload models and images -->
+      <a-assets>
+        <a-asset-item id="Lode" src="objects/Pus_Lode.glb"></a-asset-item>
+        <a-asset-item id="lode_ieksa" src="objects/lode_ieksa.obj"></a-asset-item>
+   
+      </a-assets>
 
-<!-------------------->
-<!--Izstades Objekti-->
-<!-------------------->
+      <!-------------------->
+      <!-- Izstades Objekti -->
+      <!-------------------->
 
-        <a-plane id="seashell01" src="img/Seashell_02.png" transparent="true" position="-1.02276 0.57137 -4.13266" rotation="0 33.008671535281856 0" scale="1.43294 1.43294 1.43294"></a-plane>
-        <a-plane id="seashell01-2" src="img/Seashell_02.png" transparent="true" position="1.22259 1.0702 -5.70292" rotation="0 -24.085999791709547 0" scale="2.84442 2.84442 2.84442"></a-plane>
+      <a-plane id="seashell01" 
+               src="img/Seashell_02.png" 
+               transparent="true" 
+               position="-1.02276 0.57137 -4.13266" 
+               rotation="0 33.008671535281856 0" 
+               scale="1.43294 1.43294 1.43294">
+      </a-plane>
 
+      <a-plane id="seashell01-2" 
+               src="img/Seashell_02.png" 
+               transparent="true" 
+               position="1.22259 1.0702 -5.70292" 
+               rotation="0 -24.085999791709547 0" 
+               scale="2.84442 2.84442 2.84442">
+      </a-plane>
 
-<!-------->
-<!--VIDE-->
-<!-------->
+      <!-------->
+      <!-- VIDE -->
+      <!-------->
       <a-sky src="img/sky_povray2 copy.webp"></a-sky>
-      <a-plane id="ground" src="img/imgonline-com-ua-TextureSeamless-nV0sOiMzV3.jpg" material="repeat: 25 50" position="0 0 -4" rotation="-90 0 0" width="100" height="100"></a-plane>
 
+      <a-plane id="ground" 
+               src="img/imgonline-com-ua-TextureSeamless-nV0sOiMzV3.jpg" 
+               material="repeat: 25 50" 
+               position="0 0 -4" 
+               rotation="-90 0 0" 
+               width="100" 
+               height="100">
+      </a-plane>
 
+      <!------------>
+      <!-- Lode 1 -->
+      <!------------>
+
+      <!-- Display the GLB model -->
+      <a-entity 
+        gltf-model="#Lode" 
+        position="1.22259 0 -5.70292" 
+        rotation="0 -24.085999791709547 0" 
+        scale="10 10 10">
+      </a-entity>
+
+      <!-- OBJ model at same position -->
+       <a-entity
+         obj-model="obj: #lode_ieksa"
+         position="1.22259 0 -5.70292" 
+         rotation="0 -24.085999791709547 0" 
+         scale="10 10 10"
+         material="src: img/Lode_0.webp; metalness: 0.2; roughness: 0.8; offset: 0 0; repeat: 2 2"
+         animation="property: material.offset; from: 0.515 2; to: 0.515 1; dur: 2000; loop: true">
+      </a-entity>
     </a-scene>
   </body>
 </html>
