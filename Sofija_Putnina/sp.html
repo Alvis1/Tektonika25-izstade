@@ -4,11 +4,35 @@
   </head>
   <body>
     <a-scene>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="40" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
-      <a-entity gltf-model="url(objects\flash_disc_usb.glb)"
-      position="-1 0.5 -3" rotation="0 45 0"></a-entity>
+
+<!-------->
+<!--VIDE-->
+<!-------->
+      <a-sky src="vide/photo-1506318137071-a8e063b4bec0.jpeg"></a-sky>
+
+      <a-plane id="vide/imgonline-com-ua-TextureSeamless-unJfeq0Bt25.jpg" 
+      src="vide/imgonline-com-ua-TextureSeamless-unJfeq0Bt25.jpg" material="repeat: 25 50" 
+        position="0 -0.5 -4" 
+        rotation="-90 0 0" 
+        width="100" 
+        height="100"
+      ></a-plane>
+
+
+<!-------->
+<!--Objekti-->
+<!-------->
+
+      <a-plane id="att/pulkstenis.webp" src="att/pulkstenis.webp" transparent="true"position="0 0 -4" rotation="-90 0 0" width="40" height="40"></a-plane>
+     <a-sphere id="att/apple_loading.png" src="att/apple_loading.png" transparent="true" position="-0.26541 2.60758 -18.81108" radius="1.25" material="side: double" geometry="radius: 1.36; phiLength: 180; phiStart: 0.8; thetaLength: 182.33; segmentsHeight: 20; segmentsWidth: 20" rotation="0 -2.13 0" scale="2 2 2"></a-sphere>
+
+     <a-entity id="usb" gltf-model="objects\flash_disc_usb.glb" position="10.51119 0.5 5.76625" rotation="0 45 0" scale="2 2 2"></a-entity>
+      
+    <a-plane id="att/cipars.png" src="att/cipars.png" transparent="true" position="6.41531 2.69993 8.97943" rotation="0 214.52 0" scale="5.5 5.5 5.5"></a-plane>
+       <a-plane id="att/burts.png" src="att/burts.png" transparent="true" position="-10.96696 2 -10.90041" rotation="0 55.14867000000001 0" scale="6.5 6.5 6.5"></a-plane>
+        <a-plane id="att/meitenes2.png" src="att/meitenes2.png" transparent="true" position="14.02859 3.01186 -1.8096" rotation="0 -90.246 0" scale="7 7 7"></a-plane>
+<a-plane id="att/abols.png" src="att/abols.png" transparent="true" position="-7.59014 2.44765 9.44144" rotation="0 160 0" scale="7 6 7"></a-plane>
+
     </a-scene>
   </body>
 </html>
