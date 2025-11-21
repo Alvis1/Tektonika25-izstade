@@ -1,10 +1,20 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+     <script src="komponentes/lightmaps.js"></script>
   </head>
   <body>
     <a-scene>
       //--VIDE--
+
+    <a-assets>
+    <a-asset-item id="telpa" src="obj/AS_Tek_istaba_03.glb"></a-asset-item> 
+    <img id="telpa_LM" src="img/LM_telpa_01.webp"></img>
+
+      </a-assets>
+
+
+
 <a-plane id="grida" src="img/grida.png" position="-1 0 -3.5" rotation="-90 0 0" width="20" height="10" geometry="height: 5; width: 7"></a-plane>
 <a-plane id="siena2" src="img/siena.png" position="2.515 1.5 -3.5" width="20" height="10" geometry="height: 3; width: 5" rotation="0 -90 0"></a-plane>
 <a-plane id="siena1" src="img/siena.png" position="-1 1.5 -4.6" width="20" height="10" geometry="height: 3; width: 7"></a-plane>
@@ -14,7 +24,16 @@
         <a-box src="img/paklajs.jpg" position="-0.6003 0 -2.80531" width="3" depth="2" height="0.05" rotation="0 45 0" geometry="height: 0.03"></a-box>
 
 
-        
+
+ <a-entity 
+        gltf-model="#telpa" 
+        lightmap="texture: #telpa_LM; key: Material"
+        rotation="0 90 0"
+        position="0 -0.274 0"
+      ></a-entity>
+
+
+
 <a-entity gltf-model="/Anna_Saprikina\obj\kresls.glb" rotation="0 45 0" position="-2.51945 0 -2.67052"></a-entity>
 <a-entity gltf-model="/Anna_Saprikina\obj\galds.glb" rotation="0 80 0" position="17.18899 0.04 0.32318"></a-entity>
 <a-entity gltf-model="/Anna_Saprikina\obj\kruzebalta.glb" scale="0.04 0.04 0.04" rotation="0 -155.45032531253392 0" position="-2.04407 0.79748 -3.23856"></a-entity>
