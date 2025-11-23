@@ -13,7 +13,7 @@
 
 
 
-      <a-plane id="grida" src="img/grida.png" src="komponentes/navmesh.js" shadow position="0 0.002 -0.71832" rotation="-90 0 0" width="20" height="10" geometry="height: 3.6; width: 7"></a-plane>
+      <a-plane id="grida" src="img/grida.png" shadow position="0 0.002 -0.71832" rotation="-90 0 0" width="20" height="10" geometry="height: 3.6; width: 7"></a-plane>
       <a-plane id="siena2" src="img/siena.png" shadow position="0 1.5 1.07138" width="20" height="10" geometry="height: 3; width: 7" rotation="0 180 0"></a-plane>
       <a-plane id="griesti" color="#FFC65D" shadow position="0 3 -0.71832" rotation="90 0 0" width="20" height="10" geometry="height: 3.6; width: 7" material="color: #98948b"></a-plane>
       <a-plane id="siena" src="img/siena.png" shadow position="0 1.5 1.09408" width="20" height="10" geometry="height: 3; width: 7" rotation="0 0.063 0"></a-plane>
@@ -26,12 +26,18 @@
 
     <a-entity light="color: #cddcfe; intensity: 0.2; type: ambient" position="0 7.17173 0" id="ambientlight"></a-entity>
     <a-entity light="color: #eedfaa; decay: 2; distance: 50; intensity: 5; type: point; castShadow: true" position="-0.00026 2.21755 -0.86138"></a-entity>
-    <a-entity camera="" position="8.27666 1.6 -2.87384" wasd-controls="" rotation="0 99.82815551902873 0" look-controls="" aframe-injected="" visible="" id="kamera"></a-entity>
 
-     <a-entity gltf-model="obj/zeme.glb"  rotation="0 0 0"></a-entity>
-    <a-entity id="zeme" a-navmesh="navmesh: #paklajs" position="0 1.6 0"></a-entity>
-    <a-entity camera look-controls wasd-controls="acceleration: 10"></a-entity>
+    <a-entity id="zeme" 
+          gltf-model="obj/zeme.glb"
+          nav-mesh
+          visible="false"
+          rotation="0 90 0" position="-0.00791 0 -0.00124" 
+          id="zeme"></a-entity>
 
+          <a-entity nav-agent="navmesh: #zeme"></a-entity>
+    
+    
+ 
     
     <a-sky color="black"></a-sky>
     </a-scene>
