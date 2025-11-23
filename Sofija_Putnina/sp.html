@@ -1,6 +1,8 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+    <!-- Added A-Frame Extras library for particle system support -->
   </head>
   <body>
     <a-scene>
@@ -32,6 +34,19 @@
        <a-plane id="att/burts.png" src="att/burts.png" transparent="true" position="-10.96696 2 -10.90041" rotation="0 55.14867000000001 0" scale="6.5 6.5 6.5"></a-plane>
         <a-plane id="att/meitenes2.png" src="att/meitenes2.png" transparent="true" position="14.02859 3.01186 -1.8096" rotation="0 -90.246 0" scale="7 7 7"></a-plane>
 <a-plane id="att/abols.png" src="att/abols.png" transparent="true" position="-7.59014 2.44765 9.44144" rotation="0 160 0" scale="7 6 7"></a-plane>
+
+
+<!----------->
+<!--gaismas-->
+<!-----------> 
+<a-light type="point" position="0.04398 0.93489 -2.65707" light="decay: 0.72; intensity: 14.46"></a-light>
+
+<!-- Particle System -->
+      <a-entity
+        particle-system="preset: snow; particleCount: 5000; color: #ffffff; size: 1; velocityValue: 0 -1 0;"
+        position="0 10 -10">
+      </a-entity>
+      <!-- Adjusted the position of the particle system to ensure it is within the camera's view -->
 
     </a-scene>
   </body>
