@@ -1,72 +1,151 @@
 <html>
   <head>
+    <!-- A-Frame core -->
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+
+    <!-- aframe-extras: version compatible with A-Frame 1.7.0 -->
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
   </head>
+
   <body>
     <a-scene>
 
-     <!-- Assets section: preload models and images -->
+      <!-- PLAYER RIG: WASD + mouse look, constrained to navmesh -->
+      <a-entity id="rig"
+                movement-controls="speed: 0.15; constrainToNavMesh: true"
+                position="2.711 5.154 47">
+        <a-entity camera look-controls></a-entity>
+      </a-entity>
+
+      <!-- ASSETS -->
       <a-assets>
         <a-asset-item id="Lode" src="objects/Pus_Lode.glb"></a-asset-item>
+        <a-asset-item id="Lode1" src="objects/Pus_Lode1.glb"></a-asset-item>
+        <a-asset-item id="Lode2" src="objects/Pus_Lode2.glb"></a-asset-item>
         <a-asset-item id="lode_ieksa" src="objects/lode_ieksa.obj"></a-asset-item>
-   
+        <a-asset-item id="Galerija" src="objects/Galerija.glb"></a-asset-item>
+        <a-asset-item id="navmesh-glb" src="objects/Navmesh.glb"></a-asset-item>
+
+        <!-- Video texture (muted – image only) -->
+        <video id="galleryVideo"
+               src="video/myvideo1.mp4"
+               loop="true"
+               crossorigin="anonymous"
+               webkit-playsinline
+               playsinline
+               muted>
+        </video>
+
+        <!-- Audio for positional sound around the screen -->
+        <audio id="videoAudio"
+               src="video/myvideo1.mp3"
+               crossorigin="anonymous">
+        </audio>
       </a-assets>
 
-      <!-------------------->
-      <!-- Izstades Objekti -->
-      <!-------------------->
+      <!-- GALERIJA (visual only) -->
+      <a-entity gltf-model="#Galerija"
+                position="1.2 0 -5.7"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
 
-      <a-plane id="seashell01" 
-               src="img/Seashell_02.png" 
-               transparent="true" 
-               position="-1.02276 0.57137 -4.13266" 
-               rotation="0 33.008671535281856 0" 
-               scale="1.43294 1.43294 1.43294">
-      </a-plane>
+      <!-- NAVMESH – movement-controls clamps to this -->
+      <a-entity gltf-model="#navmesh-glb"
+                nav-mesh
+                visible="false"
+                position="1.2 0 -5.7"
+                rotation="0 0 0"
+                scale="1 1 1">
+      </a-entity>
 
-      <a-plane id="seashell01-2" 
-               src="img/Seashell_02.png" 
-               transparent="true" 
-               position="1.22259 1.0702 -5.70292" 
-               rotation="0 -24.085999791709547 0" 
-               scale="2.84442 2.84442 2.84442">
-      </a-plane>
-
-      <!-------->
-      <!-- VIDE -->
-      <!-------->
+      <!-- Sky -->
       <a-sky src="img/sky_povray2 copy.webp"></a-sky>
 
-      <a-plane id="ground" 
-               src="img/imgonline-com-ua-TextureSeamless-nV0sOiMzV3.jpg" 
-               material="repeat: 25 50" 
-               position="0 0 -4" 
-               rotation="-90 0 0" 
-               width="100" 
-               height="100">
-      </a-plane>
+      <!-- Video screen -->
+      <a-video src="#galleryVideo"
+               width="4"
+               height="2.25"
+               position="1.862 2.038 15.293"
+               rotation="0 0 0">
+      </a-video>
 
-      <!------------>
-      <!-- Lode 1 -->
-      <!------------>
-
-      <!-- Display the GLB model -->
-      <a-entity 
-        gltf-model="#Lode" 
-        position="1.22259 0 -5.70292" 
-        rotation="0 -24.085999791709547 0" 
-        scale="10 10 10">
+      <!-- Positional sound "speaker" at the screen -->
+      <a-entity id="video-speaker"
+                position="2.475 2.038 21.067"
+                sound="src: #videoAudio;
+                       autoplay: false;
+                       loop: true;
+                       positional: true;
+                       distanceModel: inverse;
+                       refDistance: 0.5;
+                       maxDistance: 1;
+                       rolloffFactor: 1">
       </a-entity>
 
-      <!-- OBJ model at same position -->
-       <a-entity
-         obj-model="obj: #lode_ieksa"
-         position="1.22259 0 -5.70292" 
-         rotation="0 -24.085999791709547 0" 
-         scale="10 10 10"
-         material="src: img/Lode_0.webp; metalness: 0.2; roughness: 0.8; offset: 0 0; repeat: 2 2"
-         animation="property: material.offset; from: 0.515 2; to: 0.515 1; dur: 2000; loop: true">
+            <!-- Lode 1 GLB -->
+      <a-entity gltf-model="#Lode"
+                position="-3.848 0 -5.700"
+                rotation="0 -101.624 0"
+                scale="15 15 15">
       </a-entity>
+
+      <a-entity obj-model="obj: #lode_ieksa"
+                position="-3.848 0 -5.700"
+                rotation="0 -101.624 0"
+                scale="15 15 15"
+                material="src: img/Lode_0.webp; metalness: 0.2; roughness: 0.8; offset: 0 0; repeat: 2 2"
+                animation="property: material.offset; from: 0.515 2; to: 0.515 1; dur: 10000; loop: true">
+      </a-entity>
+
+            <!-- Lode 2 GLB -->
+      <a-entity gltf-model="#Lode1"
+                position="13.564 0 -0.576"
+                rotation="0 -82.586 0"
+                scale="10 10 10">
+      </a-entity>
+
+      <a-entity obj-model="obj: #lode_ieksa"
+                position="13.564 0 -0.576"
+                rotation="0 -82.586 0"
+                scale="10 10 10"
+                material="src: img/Lode_0.webp; metalness: 0.2; roughness: 0.8; offset: 0 0; repeat: 2 2"
+                animation="property: material.offset; from: 0.515 2; to: 0.515 1; dur: 10000; loop: true">
+      </a-entity>
+            <!-- Lode 3 GLB -->
+      <a-entity gltf-model="#Lode2"
+                position="4.890 0 -34.592"
+                rotation="0 44.121 0"
+                scale="15 15 15">
+      </a-entity>
+
+      <a-entity obj-model="obj: #lode_ieksa"
+                position="4.890 0 -34.592"
+                rotation="0 44.121 0"
+                scale="15 15 15"
+                material="src: img/Lode_0.webp; metalness: 0.2; roughness: 0.8; offset: 0 0; repeat: 2 2"
+                animation="property: material.offset; from: 0.515 2; to: 0.515 1; dur: 10000; loop: true">
+      </a-entity>
+
     </a-scene>
+
+    <!-- Start video + positional sound on first click -->
+    <script>
+      window.addEventListener('click', function handleFirstClick () {
+        const vid = document.querySelector('#galleryVideo');
+        const speaker = document.querySelector('#video-speaker');
+
+        if (vid && vid.paused) {
+          vid.play().catch(() => {});
+        }
+
+        if (speaker && speaker.components && speaker.components.sound) {
+          speaker.components.sound.playSound();
+        }
+
+        // Only run once
+        window.removeEventListener('click', handleFirstClick);
+      });
+    </script>
   </body>
 </html>
