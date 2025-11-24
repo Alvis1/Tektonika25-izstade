@@ -5,7 +5,7 @@
   </head>
   <body>
     <a-scene>
-      <a-entity position="0 0 0" gltf-model="objekti_\telpa1.glb"></a-entity>
+      <a-entity position="0 0 0" gltf-model="objekti_\telpapilnaa.glb"></a-entity>
       <a-sky src="objekti_\debess.jpg"></a-sky>
       <a-entity position="10 -5 7" gltf-model="objekti_\durvis.glb"></a-entity>
        <a-plane id="ground" 
@@ -15,19 +15,3 @@
                rotation="-90 0 0" 
                width="100" 
                height="100">
-    </a-scene>
-    <a-entity 
-  id="pelke" gltf-model="objekti_\navmesh1.glb" 
-></a-entity>
-
-<a-entity 
-id="pelke" 
-color="red" 
-rotation="-90 0 0" 
-position="0 0 0" 
-scale="2 17 1"></a-plane>
-
-
-<a-entity camera look-controls wasd-controls="acceleration: 10" navmesh="navmesh: #pelke" position="0 0 0">
-  </body>
-</html>
