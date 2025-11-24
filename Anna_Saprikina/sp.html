@@ -1,41 +1,64 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="komponentes/lightmaps.js"></script>
+    <script src="komponentes/navmesh.js"></script>
+
   </head>
   <body>
     <a-scene>
-      //--VIDE--
-<a-plane id="grida" src="img/grida.png" position="-1 0 -3.5" rotation="-90 0 0" width="20" height="10" geometry="height: 5; width: 7"></a-plane>
-<a-plane id="siena2" src="img/siena.png" position="2.515 1.5 -3.5" width="20" height="10" geometry="height: 3; width: 5" rotation="0 -90 0"></a-plane>
-<a-plane id="siena1" src="img/siena.png" position="-1 1.5 -4.6" width="20" height="10" geometry="height: 3; width: 7"></a-plane>
+     
+    <a-assets>
+  <a-asset-item id="istaba" src="obj/AS_Tek_istaba_04.glb"></a-asset-item>
+  <img id="istaba_LM" src="img/LM_telpa_01.webp">
 
-
-        <a-cylinder src="img/pulkstenis.png" position="-1.57365 1.79499 -4.56078" rotation="0 90 90" radius="0.2" height="0.15" geometry="height: 0.04"></a-cylinder>
-        <a-box src="img/paklajs.jpg" position="-0.6003 0 -2.80531" width="3" depth="2" height="0.05" rotation="0 45 0" geometry="height: 0.03"></a-box>
-
-
-        
-<a-entity gltf-model="/Anna_Saprikina\obj\kresls.glb" rotation="0 45 0" position="-2.51945 0 -2.67052"></a-entity>
-<a-entity gltf-model="/Anna_Saprikina\obj\galds.glb" rotation="0 80 0" position="17.18899 0.04 0.32318"></a-entity>
-<a-entity gltf-model="/Anna_Saprikina\obj\kruzebalta.glb" scale="0.04 0.04 0.04" rotation="0 -155.45032531253392 0" position="-2.04407 0.79748 -3.23856"></a-entity>
-<a-entity gltf-model="/Anna_Saprikina\obj\kruzezila.glb" scale="0.04 0.04 0.04" rotation="0 -54.38400799822748 0" position="-2.46326 0.7995 -3.16127"></a-entity>
-<a-entity gltf-model="/Anna_Saprikina\obj\kresls2.glb" rotation="0 -37.150010478487445 0" position="-0.00692 0 -6.58396"></a-entity>
-<a-entity gltf-model="/Anna_Saprikina\obj\logs.glb" rotation="0 -90 0" position="1.12861 0.7 -1.07726"></a-entity>
-<a-entity gltf-model="/Anna_Saprikina\obj\radiators.glb" position="0.179 0 -8.05592"></a-entity>
-<a-entity gltf-model="/Anna_Saprikina\obj\logs.glb" rotation="0 -90 0" position="-2.80081 0.7 -1.07726"></a-entity>
-<a-entity gltf-model="/Anna_Saprikina\obj\radiators.glb" position="-2.64784 0 -1.1"></a-entity>
-<a-entity gltf-model="/Anna_Saprikina\obj\virt_skapis.glb" position="-4.71819 0 -4.7" rotation="0 -90 0" scale="1.2 1.2 1.2"></a-entity>
-<a-entity gltf-model="/Anna_Saprikina\obj\virt_skapis2.glb" position="-4.71849 0 -4.7" rotation="0 -90 0" scale="1.2 1.2 1.2"></a-entity>
+    </a-assets>
+   
 
 
 
+      <a-plane id="grida" src="img/grida.png" shadow position="0 0.002 -0.71832" rotation="-90 0 0" width="20" height="10" geometry="height: 3.6; width: 7"></a-plane>
+      <a-plane id="siena2" src="img/siena.png" shadow position="0 1.5 1.07138" width="20" height="10" geometry="height: 3; width: 7" rotation="0 180 0"></a-plane>
+      <a-plane id="griesti" color="#FFC65D" shadow position="0 3 -0.71832" rotation="90 0 0" width="20" height="10" geometry="height: 3.6; width: 7" material="color: #98948b"></a-plane>
+      <a-plane id="siena" src="img/siena.png" shadow position="0 1.5 1.09408" width="20" height="10" geometry="height: 3; width: 7" rotation="0 0.063 0"></a-plane>
+      <a-cylinder src="img/pulkstenis.png" shadow position="-0.1596 1.79499 1.03323" rotation="0 -90 90" radius="0.2" height="0.15" geometry="height: 0.04"></a-cylinder>
+      <a-box src="img/paklajs.png" shadow position="-0.11349 0 -0.71981" width="3" depth="2" height="0.05" rotation="0 45 0" geometry="height: 0.03"></a-box>
+      <a-plane id="welcome" src="img/welcome.png" shadow transparent="true" position="4.08375 0.003 -1.48307" width="1" height="10" geometry="height: 0.828; width: 1.237" rotation="-90 90.00021045914971 0"></a-plane>
+      <a-sphere position="-0.11474 2.44821 -0.76936" radius="-4" color="#EF2D5E" material="transparent: true; color: #fffac2; emissive: #fffbc2" geometry="radius: 0.07"></a-sphere>
+
+       <a-entity gltf-model="#istaba" lightmap="texture: #istaba_LM; key: M_telpa_01"  rotation="0 90 0" position="0 0 0"></a-entity>
+
+
+       <a-entity position="0.5 2.16691 -2.49937" gltf-model="obj\KRESLSARFOTO1.glb" rotation="90 0 0" scale="2 2 2"></a-entity>
+        <a-plane src="img/KRESLssS.png" geometry="height: 2.086; width: 1.439" position="0.5 1.59661 -2.42748" scale="0.5 0.5 0.5"></a-plane>
+        <a-plane src="img/KRESLS.png" geometry="height: 2.086; width: 1.439" position="-0.5 1.59661 -2.42748" scale="0.5 0.5 0.5"></a-plane>
+       <a-entity position="-0.5 2.16691 -2.49937" gltf-model="obj\KRESLSARFOTO1.glb" rotation="90 0 0" scale="2 2 2"></a-entity>
+        <a-entity position="-3.51808 2.47154 -0.90924" gltf-model="obj\PULKSTENIMRAMIS.glb" rotation="90 90 0" scale="1 0.95 0.925"></a-entity>
+        <a-plane src="img/pulkstenis1.png" geometry="height: 0.7; width: 0.7" position="-3.48457 2.20801 -2.06123" scale="0.5 0.5 0.5" rotation="0 90 0"></a-plane>
+
+
+      <a-entity light="color: #b1d2e2; intensity: 0.15; type: ambient" position="0 7.17173 0" id="ambientlight"></a-entity>
+      <a-entity light="color: #eedfaa; decay: 2; distance: 50; intensity: 5; type: point; castShadow: true" position="-0.00026 2.21755 -0.86138"></a-entity>
+      <a-entity light="color: #eee3aa; decay: 2; distance: 50; intensity: 0.5; type: point; castShadow: true" position="4.78034 1.94457 -1.56974"></a-entity>
+
+
+    <a-entity id="zeme" 
+          gltf-model="obj\zemelielaka.glb"
+          nav-mesh
+          visible="false"
+          rotation="0 90 0" position="-0.00791 0 -0.00124" 
+          id="zeme"></a-entity>
 
   
+      <a-entity camera="" look-controls="" wasd-controls="acceleration: 5" navmesh="navmesh: #zeme" position="5.25096 1.59772 -1.61558" rotation="-7.9068175728053705 451.1469678860084 0"></a-entity>
+    
 
 
 
-        
-      <a-sky color="#ECECEC"></a-sky>
+
+
+    <a-sky src="img/1f00d64f-c380-4526-a884-e39a9bc0f482 (1).jpeg" scale="-0.02 0.02 0.02" position="1.10202 5.37708 -0.50598" rotation="0 -120 0"></a-sky>  
+
     </a-scene>
   </body>
 </html>
