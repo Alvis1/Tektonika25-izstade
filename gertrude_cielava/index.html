@@ -4,12 +4,38 @@
   </head>
   <body>
     <a-scene>
-      <a-box position="-1 5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 5" radius="-4" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
 
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+
+
+   <!-------------------->
+<!--Izstades Objekti-->
+<!-------------------->
+
+        <a-plane id="zens.png" src="atteli/zens.png" transparent="true" position="4.87121 1.95393 -3.83715" rotation="0 -55.05 0" scale="7 7 7"></a-plane>
+        <a-plane 
+          id="seashell01" src="att/Seashell_02.png" transparent="true" 
+          position="-1.02276 0.5 -4.1" rotation="0 33 0" scale="1.4 1.4 1.4"
+        ></a-plane>
+        
+
+<!-------->
+<!--VIDE-->
+<!-------->
+
+      <a-entity 
+        gltf-model="#kolonnas" 
+        lightmap="texture: #kolonnas_LM; key: Material"
+        rotation="0 90 0"
+        position="0 -0.274 0"
+      ></a-entity>
+
+      <a-sky src="atteli/360pic.jpg"></a-sky>
+      <a-plane id="ground" src="atteli/zale.jpg" material="repeat: 250 500" position="0 -0.1 -4" rotation="-90 0 0" width="1000" height="1000"></a-plane>
+
+
+
+
+
     </a-scene>
   </body>
 </html>

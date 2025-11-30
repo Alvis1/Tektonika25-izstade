@@ -2,7 +2,10 @@
   <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-    <!-- Added A-Frame Extras library for particle system support -->
+        <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-particle-system-component@1.2.0/dist/aframe-particle-system-component.min.js"></script>
+         <script src="https://unpkg.com/aframe-sprite-particles-component@^0.5.0/aframe-sprite-particles-component.js"></script>
+        <script src="komponentes/navmesh.js"></script>
+    
   </head>
   <body>
     <a-scene>
@@ -10,9 +13,9 @@
 <!-------->
 <!--VIDE-->
 <!-------->
-      <a-sky src="vide/photo-1506318137071-a8e063b4bec0.jpeg"></a-sky>
+      <a-sky src="vide/debesis3.png"></a-sky>
 
-      <a-plane id="vide/imgonline-com-ua-TextureSeamless-unJfeq0Bt25.jpg" 
+      <a-plane id="smiltis" 
       src="vide/imgonline-com-ua-TextureSeamless-unJfeq0Bt25.jpg" material="repeat: 25 50" 
         position="0 -0.5 -4" 
         rotation="-90 0 0" 
@@ -24,30 +27,54 @@
 <!-------->
 <!--Objekti-->
 <!-------->
-
-      <a-plane id="att/pulkstenis.webp" src="att/pulkstenis.webp" transparent="true"position="0 0 -4" rotation="-90 0 0" width="40" height="40"></a-plane>
-     <a-sphere id="att/apple_loading.png" src="att/apple_loading.png" transparent="true" position="-0.26541 2.60758 -18.81108" radius="1.25" material="side: double" geometry="radius: 1.36; phiLength: 180; phiStart: 0.8; thetaLength: 182.33; segmentsHeight: 20; segmentsWidth: 20" rotation="0 -2.13 0" scale="2 2 2"></a-sphere>
-
-     <a-entity id="usb" gltf-model="objects\flash_disc_usb.glb" position="10.51119 0.5 5.76625" rotation="0 45 0" scale="2 2 2"></a-entity>
-      
-    <a-plane id="att/cipars.png" src="att/cipars.png" transparent="true" position="6.41531 2.69993 8.97943" rotation="0 214.52 0" scale="5.5 5.5 5.5"></a-plane>
-       <a-plane id="att/burts.png" src="att/burts.png" transparent="true" position="-10.96696 2 -10.90041" rotation="0 55.14867000000001 0" scale="6.5 6.5 6.5"></a-plane>
-        <a-plane id="att/meitenes2.png" src="att/meitenes2.png" transparent="true" position="14.02859 3.01186 -1.8096" rotation="0 -90.246 0" scale="7 7 7"></a-plane>
-<a-plane id="att/abols.png" src="att/abols.png" transparent="true" position="-7.59014 2.44765 9.44144" rotation="0 160 0" scale="7 6 7"></a-plane>
+ 
+      <a-plane id="pulkstenis" src="att/pulkstenis.webp" transparent="true"position="0 0 -4" rotation="-90 0 0" width="40" height="40"></a-plane>
+<a-sphere id="att/apple_loading.png-2" src="att/apple_loading.png" transparent="true" position="-8.35063 2.51713 -17.46637" radius="1.25" material="side: double" geometry="radius: 1.36; phiLength: 180; phiStart: 0.8; thetaLength: 182.33; segmentsHeight: 20; segmentsWidth: 20" rotation="0 25.93 0" scale="2 2 2"></a-sphere>
 
 
-<!----------->
+<a-plane id="att/cipars.png" src="att/cipars.png" transparent="true" position="6.41531 2.69993 8.97943" rotation="0 214.52 0" scale="5.5 5.5 5.5" material="shader: flat; anisotropy: 1.04"></a-plane>       
+<a-plane id="att/burts.png" src="att/burts.png" transparent="true" position="-12.89156 1.78 -10.33427" rotation="0 64.78 0" scale="6.5 6.5 6.5" material="shader: flat"></a-plane>
+<a-plane id="void" src="att/void.png" transparent="true" position="0.10638 2.75651 10.84069" rotation="0 -180 0" scale="7.5 7.5 7.5" material="shader: flat; color: #ffffff"></a-plane>
+<a-plane id="sunitis" src="att/sunitis.png" transparent="true" position="7.27141 2.61186 -15.37545" rotation="0 -31.839999999999996 0" scale="7 7 7" material="shader: flat; color: #ffffff"></a-plane>
+<a-plane id="gaismina" src="att/gaismina.png" transparent="true" position="12.16932 2.31937 -10.35245" rotation="0 -59.38000000000001 0" scale="17.01 9.42 10" material="shader: flat; color: #ffffff"></a-plane>
+
+
+<a-plane id="orb2" src="att/orb2.png" transparent="true" position="-14.32997 2.8422 -2.563" rotation="0 90 0" scale="7 7 7" material="shader: flat; color: #ffffff"></a-plane>
+<a-plane id="fog" src="att/fog.png" transparent="true" position="-0.02723 3.01186 9.90946" rotation="0 -180 0" scale="7 7 12" material="shader: flat; color: #ffffff"></a-plane>
+
+<a-plane id="saluts" src="att/saluts3.png" transparent="true" position="10.54549 2.58289 4.19111" rotation="0 -121.566 0" scale="7 7 7" material="shader: flat; color: #ffffff"></a-plane>
+<a-plane id="sunitis2" src="att/sunitis2.png" transparent="true" position="14.36244 2.56823 -3.19831" rotation="0 -90 0" scale="6.5 6.5 6.5" material="shader: flat; color: #ffffff"></a-plane>
+
+<a-plane id="qtip" src="att/qtip2.png" transparent="true" position="-0.43174 0.27786 -10.02264" rotation="-90 -90 0" scale="11 4.65 7" material="shader: flat; color: #ffffff"></a-plane>
+<a-plane id="makonis" src="att/makonis.png" transparent="true" position="-12.31831 3.02944 4.3449" rotation="0 118.84000000000002 0" scale="6 4 6" material="shader: flat"></a-plane>
+
+<a-plane id="att/abols.png" src="att/abols.png" transparent="true" position="-7.59014 2.44765 9.44144" rotation="0 160 0" scale="7 6 7" material="shader: flat"></a-plane>
+
+  </a-plane>
+   <!-- Particle system uses 'default' preset, setting custom colors. -->
+      <a-entity position="-0.26541 0 -18.81108" particle-system="color: #0000FF,#44CC00"></a-entity>
+      <a-entity position="-0.26541 0 -18.81108" particle-system="color: #FFFFFF,#FFFF00"></a-entity>
+            <a-entity position="-0.26541 0 -18.81108" particle-system="color: #FF00FF,#FFFF00"></a-entity>
+            <a-entity position="-0.26541 0 -18.81108" particle-system="color: #00FF00,#FFFF00"></a-entity>
+
+      <a-entity position="0 2.25 -15" particle-system="preset: dust"></a-entity>
+
+       <a-entity
+         image-particles="src:att/cipars.png; particleSize: 5; particleCount: 4100; particleSpeed: 0.5; particleMotionDuration: 5"
+         position="0 2 -5">
+       </a-entity>
+  
+      <!----------->
 <!--gaismas-->
 <!-----------> 
 <a-light type="point" position="0.04398 0.93489 -2.65707" light="decay: 0.72; intensity: 14.46"></a-light>
 
-<!-- Particle System -->
-      <a-entity
-        particle-system="preset: snow; particleCount: 5000; color: #ffffff; size: 1; velocityValue: 0 -1 0;"
-        position="0 10 -10">
-      </a-entity>
-      <!-- Adjusted the position of the particle system to ensure it is within the camera's view -->
+      <!-------------->
+<!--Navigacija-->
+<!--------------> 
+
+<a-entity camera look-controls wasd-controls="acceleration: 30" navmesh="navmesh: #smiltis" position="0 2 0">
+
+</a-entity>
 
     </a-scene>
-  </body>
-</html>
