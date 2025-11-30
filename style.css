@@ -119,7 +119,7 @@ h4 {
 }
 
 /* Generic button and input styling */
-button:not(.button):not(.infobutton),
+button:not(.button):not(.infobutton):not(.pdf-close-button):not(.pdf-nav-button):not(.sakums-button):not(.pdf-info-button),
 input {
   font-family: inherit;
   font-size: 100%;
@@ -132,7 +132,7 @@ input {
   cursor: pointer;
 }
 
-button:not(.button):not(.infobutton):hover {
+button:not(.button):not(.infobutton):not(.pdf-close-button):not(.pdf-nav-button):not(.sakums-button):not(.pdf-info-button):hover {
   background: var(--color-button-hover);
 }
 
@@ -364,7 +364,7 @@ iframe {
   height: 40px;
   border-radius: 50%;
   border: none;
-  background-color: var(--color-primary);
+  background-color: #FFD700;
   color: var(--color-text-main);
   font-size: 24px;
   font-weight: bold;
@@ -377,7 +377,7 @@ iframe {
 }
 
 .pdf-close-button:hover {
-  background-color: var(--color-primary-hover);
+  background-color: #FFC107;
   transform: scale(1.1);
 }
 
