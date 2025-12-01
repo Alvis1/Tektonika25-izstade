@@ -1,11 +1,17 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="komponentes\navmesh.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-entity position="0 0 0" gltf-model="objekti_\telpa2.glb"></a-entity>
-      <a-sky color="#ECECEC"></a-sky>
-    </a-scene>
-  </body>
-</html>
+      <a-entity position="0 0 0" gltf-model="objekti_\telpapilnaa.glb"></a-entity>
+      <a-sky src="objekti_\debess.jpg"></a-sky>
+      <a-entity position="10 -5 7" gltf-model="objekti_\durvis.glb"></a-entity>
+       <a-plane id="ground" 
+               src="objekti_\zeme.jpg" 
+               material="repeat: 25 50" 
+               position="0 0 0" 
+               rotation="-90 0 0" 
+               width="100" 
+               height="100">

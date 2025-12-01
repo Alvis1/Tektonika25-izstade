@@ -4,11 +4,27 @@
   </head>
   <body>
     <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+
+<!------------------->
+<!--izstadesobjekti-->
+<!------------------->
+
+<a-plane id="glezna" src="img/glezna01.png" position="-1.87417 1.475 -5.53347" rotation="180 0 180" scale="0.8 0.8 1"></a-plane>
+<a-entity gltf-model="obj/untitled.glb" position="0 1 0"></a-entity>
+<a-entity gltf-model="obj/untitled.glb" position="-5.00955 1 -1.8268" rotation="0 180 0"></a-entity>
+<a-entity gltf-model="obj/untitled.glb" position="-1.52333 1 -6.01567"></a-entity>
+<a-entity gltf-model="obj/untitled.glb" position="-3.34163 1 4.32517" rotation="0 180 0"></a-entity>
+
+<!-------->
+<!--vide-->
+<!-------->
+
+<a-entity light="distance: 2.11; intensity: 2.18; type: point" position="-0.22777 1.47048 -0.11796" id="gaisma 01"></a-entity>
+  
+
+
+      <a-sky src="img/deb.jpeg"></a-sky>
+      
     </a-scene>
   </body>
 </html>

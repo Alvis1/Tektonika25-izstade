@@ -22,28 +22,85 @@
         </nav>
     </header>
   
-    <div id="infoButtonContainer" class="info-button-container">
-        <button class="infobutton" onclick="loadPage('info.html')" aria-label="Apskatīt informāciju par izstādi">INFO</button>
+    <div id="bottomButtonsContainer" class="bottom-buttons-container">
+        <button id="sakumsButton" class="sakums-button" onclick="loadPage('info.html')" aria-label="Atgriezties uz sākumu" style="display: none;">
+            ← sākums
+        </button>
+        <button id="pdfInfoButton" class="pdf-info-button" onclick="openPdfViewer()" aria-label="Apskatīt projekta informāciju">
+            Info
+        </button>
+    </div>
+
+    <!-- PDF Viewer Overlay -->
+    <div id="pdfViewerOverlay" class="pdf-viewer-overlay" style="display: none;">
+        <div class="pdf-viewer-container">
+            <button class="pdf-close-button" onclick="closePdfViewer()" aria-label="Aizvērt PDF skatītāju">×</button>
+            <button class="pdf-nav-button pdf-nav-left" onclick="prevPdfPage()" aria-label="Iepriekšējā lapa">‹</button>
+            <canvas id="pdfCanvas" class="pdf-canvas"></canvas>
+            <button class="pdf-nav-button pdf-nav-right" onclick="nextPdfPage()" aria-label="Nākamā lapa">›</button>
+            <div class="pdf-page-indicator">
+                <span id="currentPage">1</span> / <span id="totalPages">1</span>
+            </div>
+        </div>
     </div>
 
     <main>
         <iframe id="myIframe" src="info.html" title="Izstādes saturs" aria-label="Izstādes galvenais saturs"></iframe>
     </main>
 
+    <!-- PDF.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
+        // PDF viewer state
+        let pdfDoc = null;
+        let currentPageNum = 1;
+        let currentPdfPath = null;
+        let currentProjectFolder = null;
+
+        // PDF paths mapping for each project
+        const pdfPaths = {
+            'Anna_Saprikina/sp.html': 'Anna_Saprikina/tektonikaAnna.pdf',
+            'Oto_Bulats/index.html': 'Oto_Bulats/Tektonika Oto.pdf',
+            'Sofija_Putnina/sp.html': 'Sofija_Putnina/Tektonika Sofija.pptx.pdf'
+        };
+
         function loadPage(url) {
             const iframe = document.getElementById('myIframe');
-            const buttons = document.querySelectorAll('.button, .infobutton');
+            const buttons = document.querySelectorAll('.button');
+            const sakumsButton = document.getElementById('sakumsButton');
+            const pdfInfoButton = document.getElementById('pdfInfoButton');
             
             // Add loading state
             iframe.style.opacity = '0.5';
             
             // Update button states
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
             
             // Load new page
             iframe.src = url;
+            
+            // Update current project folder
+            currentProjectFolder = url;
+            
+            // Show/hide sākums button based on whether info.html is shown
+            if (url === 'info.html') {
+                sakumsButton.style.display = 'none';
+                pdfInfoButton.style.display = 'none';
+            } else {
+                sakumsButton.style.display = 'block';
+                pdfInfoButton.style.display = 'block';
+                // Style PDF button based on whether there's a PDF for this project
+                if (pdfPaths[url]) {
+                    pdfInfoButton.classList.add('has-pdf');
+                    pdfInfoButton.classList.remove('no-pdf');
+                } else {
+                    pdfInfoButton.classList.remove('has-pdf');
+                    pdfInfoButton.classList.add('no-pdf');
+                }
+            }
             
             // Remove loading state when loaded
             iframe.onload = function() {
@@ -56,11 +113,92 @@
                 console.error('Failed to load page:', url);
             };
         }
+
+        async function openPdfViewer() {
+            if (!currentProjectFolder || !pdfPaths[currentProjectFolder]) {
+                // No action if no PDF available
+                return;
+            }
+
+            currentPdfPath = pdfPaths[currentProjectFolder];
+            document.getElementById('pdfViewerOverlay').style.display = 'flex';
+            
+            // Initialize PDF.js
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+            
+            try {
+                pdfDoc = await pdfjsLib.getDocument(currentPdfPath).promise;
+                document.getElementById('totalPages').textContent = pdfDoc.numPages;
+                currentPageNum = 1;
+                renderPage(currentPageNum);
+            } catch (error) {
+                console.error('Error loading PDF:', error);
+                closePdfViewer();
+            }
+        }
+
+        function closePdfViewer() {
+            document.getElementById('pdfViewerOverlay').style.display = 'none';
+            pdfDoc = null;
+            currentPageNum = 1;
+        }
+
+        async function renderPage(pageNum) {
+            if (!pdfDoc) return;
+            
+            const page = await pdfDoc.getPage(pageNum);
+            const canvas = document.getElementById('pdfCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Calculate scale to fit the container
+            const container = canvas.parentElement;
+            const containerWidth = container.clientWidth * 0.8;
+            const containerHeight = container.clientHeight * 0.85;
+            
+            const viewport = page.getViewport({ scale: 1 });
+            const scaleX = containerWidth / viewport.width;
+            const scaleY = containerHeight / viewport.height;
+            const scale = Math.min(scaleX, scaleY);
+            
+            const scaledViewport = page.getViewport({ scale: scale });
+            
+            canvas.width = scaledViewport.width;
+            canvas.height = scaledViewport.height;
+            
+            await page.render({
+                canvasContext: ctx,
+                viewport: scaledViewport
+            }).promise;
+            
+            document.getElementById('currentPage').textContent = pageNum;
+        }
+
+        function prevPdfPage() {
+            if (currentPageNum <= 1) return;
+            currentPageNum--;
+            renderPage(currentPageNum);
+        }
+
+        function nextPdfPage() {
+            if (!pdfDoc || currentPageNum >= pdfDoc.numPages) return;
+            currentPageNum++;
+            renderPage(currentPageNum);
+        }
+
+        // Keyboard navigation for PDF
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('pdfViewerOverlay').style.display === 'flex') {
+                if (e.key === 'ArrowLeft') prevPdfPage();
+                if (e.key === 'ArrowRight') nextPdfPage();
+                if (e.key === 'Escape') closePdfViewer();
+            }
+        });
         
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Set initial active state for INFO button
-            document.querySelector('.infobutton').classList.add('active');
+            // Initially on info page, hide both buttons
+            document.getElementById('sakumsButton').style.display = 'none';
+            document.getElementById('pdfInfoButton').style.display = 'none';
         });
     </script>
 </body>
