@@ -1,17 +1,43 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-    <script src="komponentes\navmesh.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
+    <script src="komponentes/navmesh.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-entity position="0 0 0" gltf-model="objekti_\telpapilnaa.glb"></a-entity>
-      <a-sky src="objekti_\debess.jpg"></a-sky>
-      <a-entity position="10 -5 7" gltf-model="objekti_\durvis.glb"></a-entity>
-       <a-plane id="ground" 
-               src="objekti_\zeme.jpg" 
-               material="repeat: 25 50" 
-               position="0 0 0" 
-               rotation="-90 0 0" 
-               width="100" 
+      <!-- ASSETS -->
+      <a-assets>
+        <a-asset-item id="navmesh-glb" src="objekti_/griiiidaaaa.glb"></a-asset-item>
+      </a-assets>
+
+      <a-entity position="0 0 0" gltf-model="objekti_\TELPADINAL.glb"></a-entity>
+      <a-entity position="0 0 0" gltf-model="objekti_/dubulta.glb"></a-entity>
+      <a-entity position="0 0 0" gltf-model="objekti_\LIELAk.glb"></a-entity>
+      <a-entity position="0 0 0" gltf-model="objekti_\LIELAl.glb"></a-entity>
+      <a-entity position="0 0 0" gltf-model="objekti_\logs.glb"></a-entity>
+      <a-entity position="0 0 0" gltf-model="objekti_\plaK.glb"></a-entity>
+      <a-entity position="0 0 0" gltf-model="objekti_\plaL.glb"></a-entity>
+      <a-sky src="objekti_/debess.jpg"></a-sky>
+      <a-plane id="ground"
+               src="objekti_/zeme.jpg"
+               material="repeat: 25 50"
+               position="0 0 0"
+               rotation="-90 0 0"
+               width="100"
                height="100">
+      </a-plane>
+      <!-- NAVMESH – movement-controls clamps to this -->
+      <a-entity gltf-model="#navmesh-glb"
+                nav-mesh
+                visible="false"
+                position="0 2 0"></a-entity>
+      <!-- PLAYER RIG: WASD + mouse look, constrained to navmesh -->
+      <a-entity id="rig"
+                movement-controls="speed: 0.15; constrainToNavMesh: true"
+                position="0 2 0">
+        <a-entity camera look-controls></a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
