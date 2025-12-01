@@ -18,9 +18,9 @@
       <a-entity position="0 0 0" gltf-model="objekti_\logs.glb"></a-entity>
       <a-entity position="0 0 0" gltf-model="objekti_\plaK.glb"></a-entity>
       <a-entity position="0 0 0" gltf-model="objekti_\plaL.glb"></a-entity>
-      <a-sky src="objekti_/debess.jpg"></a-sky>
+      <a-sky src="objekti_\melnsfons.jpg"></a-sky>
       <a-plane id="ground"
-               src="objekti_/zeme.jpg"
+               src="objekti_\melnsfons.jpg"
                material="repeat: 25 50"
                position="0 0 0"
                rotation="-90 0 0"
@@ -36,8 +36,56 @@
       <a-entity id="rig"
                 movement-controls="speed: 0.15; constrainToNavMesh: true"
                 position="0 2 0">
-        <a-entity camera look-controls></a-entity>
+        <!-- Camera with flashlight (spot) attached -->
+        <a-entity id="camera" camera look-controls>
+          <!-- Spot light that follows camera view (flashlight) -->
+          <a-entity id="flashlightLight"
+                    position="0 0 0"
+                    rotation="0 0 0"
+                    light="type: spot; color: #ffffff; intensity: 4; distance: 40; angle: 25; penumbra: 0.4; decay: 1.5; castShadow: true; shadowMapWidth: 1024; shadowMapHeight: 1024; shadowBias: -0.0005">
+          </a-entity>
+        </a-entity>
       </a-entity>
+
+      <!-- MOON LIGHT (added) -->
+      <!-- subtle cool ambient to simulate night sky -->
+      <a-entity light="type: hemisphere; color: #2b3446; groundColor: #0f1113; intensity: 0.18"></a-entity>
+
+      <!-- directional "moon" light casting soft shadows -->
+      <a-entity id="moon-light"
+                position="-10 14 -6"
+                rotation="-50 30 0"
+                light="type: directional; color: #cfe8ff; intensity: 0.7; castShadow: true; shadowMapWidth: 1024; shadowMapHeight: 1024; shadowBias: -0.0005">
+      </a-entity>
+
     </a-scene>
+
+    <script>
+      // Flashlight toggle and setup: press "F" to toggle on/off.
+      (function () {
+        const rig = document.querySelector('#rig');
+        if (!rig) return;
+        const cam = rig.querySelector('#camera');
+        const light = cam && cam.querySelector('#flashlightLight');
+        let enabled = true;
+
+        function setFlash(on) {
+          enabled = !!on;
+          if (!light) return;
+          // toggle intensity for the light
+          light.setAttribute('light', 'intensity', enabled ? 4 : 0);
+        }
+
+        // Toggle on F key
+        document.addEventListener('keydown', (evt) => {
+          if (evt.key && evt.key.toLowerCase() === 'f') {
+            setFlash(!enabled);
+          }
+        });
+
+        // Ensure light is active once scene/camera ready
+        window.addEventListener('load', () => setFlash(true));
+      })();
+    </script>
   </body>
 </html>
