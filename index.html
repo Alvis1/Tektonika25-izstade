@@ -7,7 +7,19 @@
     
     <link rel="stylesheet" href="style.css" />
     <style>
-    
+        .controls-hint {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 1000;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -29,6 +41,10 @@
         <button id="pdfInfoButton" class="pdf-info-button" onclick="openPdfViewer()" aria-label="Apskatīt projekta informāciju">
             Info
         </button>
+    </div>
+
+    <div id="controlsHint" class="controls-hint" style="display: none;">
+        Pārvietošanās: W A S D taustiņi | Skatīšanās: peles kreisā poga + kustība
     </div>
 
     <!-- PDF Viewer Overlay -->
@@ -86,12 +102,15 @@
             currentProjectFolder = url;
             
             // Show/hide sākums button based on whether info.html is shown
+            const controlsHint = document.getElementById('controlsHint');
             if (url === 'info.html') {
                 sakumsButton.style.display = 'none';
                 pdfInfoButton.style.display = 'none';
+                controlsHint.style.display = 'none';
             } else {
                 sakumsButton.style.display = 'block';
                 pdfInfoButton.style.display = 'block';
+                controlsHint.style.display = 'block';
                 // Style PDF button based on whether there's a PDF for this project
                 if (pdfPaths[url]) {
                     pdfInfoButton.classList.add('has-pdf');
@@ -196,9 +215,10 @@
         
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Initially on info page, hide both buttons
+            // Initially on info page, hide both buttons and controls hint
             document.getElementById('sakumsButton').style.display = 'none';
             document.getElementById('pdfInfoButton').style.display = 'none';
+            document.getElementById('controlsHint').style.display = 'none';
         });
     </script>
 </body>
