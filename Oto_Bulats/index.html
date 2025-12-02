@@ -17,17 +17,17 @@
       <!-- ASSETS -->
       <a-assets>
 
-        <!-- THESE ARE IN /objects/ (one level up) -->
-        <a-asset-item id="Lode" src="../objects/Pus_Lode.glb"></a-asset-item>
-        <a-asset-item id="Lode1" src="../objects/Pus_Lode1.glb"></a-asset-item>
-        <a-asset-item id="Lode2" src="../objects/Pus_Lode2.glb"></a-asset-item>
-        <a-asset-item id="Galerija" src="../objects/Galerija.glb"></a-asset-item>
-        <a-asset-item id="navmesh-glb" src="../objects/Navmesh.glb"></a-asset-item>
+        <!-- GLBs -->
+        <a-asset-item id="Lode" src="objects/Pus_Lode.glb"></a-asset-item>
+        <a-asset-item id="Lode1" src="objects/Pus_Lode1.glb"></a-asset-item>
+        <a-asset-item id="Lode2" src="objects/Pus_Lode2.glb"></a-asset-item>
+        <a-asset-item id="Galerija" src="objects/Galerija.glb"></a-asset-item>
+        <a-asset-item id="navmesh-glb" src="objects/Navmesh.glb"></a-asset-item>
 
-        <!-- FIXED OTO BULATS OBJ PATH -->
-        <a-asset-item id="lode_ieksa" src="../Oto_Bulats/objects/lode_ieksa.obj"></a-asset-item>
+        <!-- OBJ -->
+        <a-asset-item id="lode_ieksa" src="objects/Lode_Ieksa.obj"></a-asset-item>
 
-        <!-- FIXED VIDEO PATH -->
+        <!-- VIDEO -->
         <video id="galleryVideo"
                src="../Oto_Bulats/Video/myvideo1.mp4"
                loop="true"
@@ -35,7 +35,7 @@
                muted>
         </video>
 
-        <!-- FIXED AUDIO PATH -->
+        <!-- AUDIO -->
         <audio id="videoAudio"
                src="../Oto_Bulats/Video/myvideo1.mp3">
         </audio>
@@ -54,8 +54,8 @@
                 position="1.2 0 -5.7">
       </a-entity>
 
-      <!-- SKY (ALSO NEEDS ../) -->
-      <a-sky src="../img/sky_povray2 copy.webp"></a-sky>
+      <!-- SKY -->
+      <a-sky src="img/sky_povray2 copy.webp"></a-sky>
 
       <!-- VIDEO SCREEN -->
       <a-video src="#galleryVideo"
@@ -64,7 +64,7 @@
                position="1.862 2.038 15.293">
       </a-video>
 
-      <!-- POSITIONAL AUDIO -->
+      <!-- AUDIO SOURCE -->
       <a-entity id="video-speaker"
                 position="1.862 2.038 15.293"
                 sound="src: #videoAudio;
@@ -87,7 +87,7 @@
                 position="-3.848 0 -5.700"
                 rotation="0 -101.624 0"
                 scale="15 15 15"
-                material="src: ../img/Lode_0.webp; metalness: 0.2; roughness: 0.8; offset: 0 0; repeat: 2 2"
+                material="src: img/Lode_0.webp; metalness: 0.2; roughness: 0.8; offset: 0 0; repeat: 2 2"
                 animation="property: material.offset; from: 0.515 2; to: 0.515 1; dur: 10000; loop: true">
       </a-entity>
 
@@ -102,7 +102,7 @@
                 position="13.564 0.098 -0.576"
                 rotation="0 -82.586 0"
                 scale="10 10 10"
-                material="src: ../img/Lode_0.webp; metalness: 0.2; roughness: 0.8; offset: 0 0; repeat: 2 2"
+                material="src: img/Lode_2.webp; metalness: 0.2; roughness: 0.8; offset: 0 0; repeat: 2 2"
                 animation="property: material.offset; from: 0.515 2; to: 0.515 1; dur: 10000; loop: true">
       </a-entity>
 
@@ -117,13 +117,13 @@
                 position="4.890 0 -34.592"
                 rotation="0 44.121 0"
                 scale="15 15 15"
-                material="src: ../img/Lode_0.webp; metalness: 0.2; roughness: 0.8; offset: 0 0; repeat: 2 2"
+                material="src: img/Lode_1.webp; metalness: 0.2; roughness: 0.8; offset: 0 0; repeat: 2 2"
                 animation="property: material.offset; from: 0.515 2; to: 0.515 1; dur: 10000; loop: true">
       </a-entity>
 
     </a-scene>
 
-    <!-- START VIDEO/AUDIO ON FIRST CLICK -->
+    <!-- FIRST CLICK VIDEO/AUDIO START -->
     <script>
       window.addEventListener('click', function handleFirstClick () {
         const vid = document.querySelector('#galleryVideo');
