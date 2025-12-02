@@ -1,37 +1,58 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+     <script src="komponentes/navmesh.js"></script>
   </head>
   <body>
     <a-scene>
-
 
 
    <!-------------------->
 <!--Izstades Objekti-->
 <!-------------------->
 
-        <a-plane id="zens.png" src="atteli/zens.png" transparent="true" position="4.87121 1.95393 -3.83715" rotation="0 -55.05 0" scale="7 7 7"></a-plane>
-         <a-plane id="zens.png" src="atteli/zens.png" transparent="true" position="10 1.95393 -3.83715" rotation="0 -55.05 0" scale="7 7 7"></a-plane>
-        <a-plane 
-          id="seashell01" src="att/Seashell_02.png" transparent="true" 
-          position="-1.02276 0.5 -4.1" rotation="0 33 0" scale="1.4 1.4 1.4"
-        ></a-plane>
-        
+        <a-plane id="zens3.png" src="atteli/zens3.png" transparent="true" position="4.87121 0 -3.83715" rotation="0 -55.05 0" scale="4 4 4"></a-plane>
+        <a-plane id="meitene3.png" src="atteli/meitene3.png" transparent="true" position="-4.87121 0 3.83715" rotation="0 105.05 0" scale="4 4 4"></a-plane>
+
 
 <!-------->
 <!--VIDE-->
 <!-------->
 
-      <a-entity 
-        gltf-model="#kolonnas" 
-        lightmap="texture: #kolonnas_LM; key: Material"
-        rotation="0 90 0"
-        position="0 -0.274 0"
-      ></a-entity>
+<video id="sky-video" autoplay loop muted playsinline preload="auto">
+      <source src="360video/360_sharp.mp4" type="video/mp4">
+    </video>
 
-      <a-sky src="atteli/360pic.jpg"></a-sky>
-      <a-plane id="ground" src="atteli/zale.jpg" material="repeat: 250 500" position="0 -0.1 -4" rotation="-90 0 0" width="1000" height="1000"></a-plane>
+    <!-- Centered Manual Play/Stop Button for Video -->
+    <button id="play-button" 
+            onclick="toggleVideo()" 
+            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; padding: 10px 20px; font-size: 16px; cursor: pointer;">
+      Start 360° Video
+    </button>
+
+    <script>
+      function toggleVideo() {
+        const video = document.getElementById('sky-video');
+        const button = document.getElementById('play-button');
+
+        if (video.paused) {
+          video.play();
+          button.textContent = 'Apstāties';
+        } else {
+          video.pause();
+          button.textContent = 'Sākt griezties';
+        }
+      }
+    </script>
+
+    <!-- Sky with 360° Video Texture -->
+    <a-sky src="#sky-video"></a-sky>
+
+
+ <!-------------->
+<!--Navigacija-->
+<!--------------> 
+ <a-entity camera look-controls wasd-controls="enabled: false"></a-entity>
 
 
 
