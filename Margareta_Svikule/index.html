@@ -1,6 +1,7 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+      <script src="komponentes/navmesh.js"></script>
   </head>
   <body>
     <a-scene>
@@ -10,20 +11,26 @@
 <!------------------->
 
 <a-plane id="glezna" src="img/glezna01.png" position="-1.87417 1.475 -5.53347" rotation="180 0 180" scale="0.8 0.8 1"></a-plane>
-<a-entity gltf-model="obj/untitled.glb" position="0 1 0"></a-entity>
-<a-entity gltf-model="obj/untitled.glb" position="-5.00955 1 -1.8268" rotation="0 180 0"></a-entity>
-<a-entity gltf-model="obj/untitled.glb" position="-1.52333 1 -6.01567"></a-entity>
-<a-entity gltf-model="obj/untitled.glb" position="-3.34163 1 4.32517" rotation="0 180 0"></a-entity>
+<a-entity gltf-model="obj/tunelis.glb" position="0 1 0"></a-entity>
+          <a-entity id="zeme" 
+          gltf-model="obj/meshgridai.glb" 
+          nav-mesh=""
+          visible="false" 
+          position="0.01331 0 -0.00124"></a-entity>
+          id="zeme"></a-entity>
 
+<a-entity camera="" look-controls="" wasd-controls="acceleration: 10" navmesh="navmesh: #zeme" position="-6.77764 1.06294 -1.36351" rotation="11.000789666511803 -74.94287960311178 0"></a-entity>     
 <!-------->
 <!--vide-->
 <!-------->
 
-<a-entity light="distance: 2.11; intensity: 2.18; type: point" position="-0.22777 1.47048 -0.11796" id="gaisma 01"></a-entity>
-  
+<a-entity light="angle: 45; color: #f2efe3; type: point; castShadow: true" position="-3.06814 1.67095 4.21359" rotation="-7.675342623572508 -8.12110378818429 -9.805026748073779"></a-entity>
+<a-entity light="angle: 45; color: #ffeba3; type: spot; castShadow: true" position="-2.2464 11.81675 0.96587" rotation="-81.00076237102986 -38.62766863212984 51.36050971332213"></a-entity> 
+<a-entity light="color: #000000; type: ambient" position="0.40748 0.89446 -0.67007"></a-entity>
+<a-entity light="angle: 45; color: #f2efe3; type: point; castShadow: true" position="-0.62299 1.58124 -0.29542" rotation="66.05057462268131 -30.819399800086984 -76.60159242001544"></a-entity>
 
-
-      <a-sky src="img/deb.jpeg"></a-sky>
+<a-entity light="angle: 45; color: #f2efe3; type: point; castShadow: true" position="-4.88499 1.73942 -2.49767" rotation="-47.898125757346556 18.821663570047544 0.4812845479098915"></a-entity>
+      <a-sky src="img/fons.jpg"></a-sky>
       
     </a-scene>
   </body>
